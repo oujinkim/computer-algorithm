@@ -1,21 +1,22 @@
 package sort;
-import java.util.Comparator;
 
-public class SelectionSort<T> extends Sort<T>{
+
+public class SelectionSort extends Sort{
     @Override
-    public T[] sort(T[] src,Comparator<T> comp) {
-        T [] dst = src.clone();
+    public int[] sort(int[] src) {
+        System.out.println(this.getClass().getSimpleName());
+        int [] dst = src.clone();
         for(int i =0; i<dst.length;i++){
-            T min = dst[i];
+            int min = dst[i];
             int idx = i;
 
             for(int j = i; j< dst.length;j++){
-                if (comp.compare(min, dst[j]) > 0){
+                if (min > dst[j]){
                     min = dst[j];
                     idx = j;
                 }
             }
-            T tmp = dst[i];
+            int tmp = dst[i];
             dst[i] = dst[idx];
             dst[idx] = tmp;
         }

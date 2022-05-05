@@ -1,25 +1,27 @@
 package sort;
 
-import java.util.Comparator;
+import java.time.Duration;
+import java.time.Instant;
 
-public  class BubbleSort<T> extends Sort<T> {
-
-    public T[] sort(T [] src, Comparator<T> comp){
-
-        T[] dst = src.clone();
-
-        for(int i=0;i< dst.length-1;i++){
-            for(int j = 0;j<dst.length-1-i;j++)
+public class BubbleSort extends Sort{
+    @Override
+    public int[] sort(int[] src) {
+        Instant start = Instant.now();
+        System.out.println(this.getClass().getSimpleName());
+        int[] dst = src.clone();
+        int pass;
+        for(pass = 0;pass< dst.length;pass++)
+        {
+            for(int i=0;i<dst.length - pass-1;i++)
             {
-                if(comp.compare(dst[j], dst[j+1]) > 0){
-                    T tmp = dst[j];
-                    dst[j] = dst[j+1];
-                    dst[j+1] = tmp;
+                if(dst[i]>dst[i+1])
+                {
+                    int temp = dst[i];
+                    dst[i] = dst[i+1];
+                    dst[i+1] = temp;
                 }
             }
         }
-
-        return (T[])dst;
+        return dst;
     }
-
 }
